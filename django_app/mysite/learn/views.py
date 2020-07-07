@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
-from forms import AddForm
+from .forms import AddForm
 # Create your views here.
 
 def index(request):
@@ -30,7 +30,7 @@ def add_form(request):
             a = form.cleaned_data['a']
             b = form.cleaned_data['b']
             return HttpResponse(str(a+b))
-        else:
-            form = AddForm()
-        return render(request, 'add_form.html', {'form': form})
+    else:
+        form = AddForm()
+    return render(request, 'add_form.html', {'form': form})
 

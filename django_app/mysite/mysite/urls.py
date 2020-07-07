@@ -24,4 +24,5 @@ urlpatterns = [
     url('add/', learn_views.add_calc),
     url('^add2/(\d+)/(\d+)/$', learn_views.add_calc2),
     url('home/', learn_views.home, name='home'),
+    url('form/', learn_views.add_form, name='form'),
 ]
