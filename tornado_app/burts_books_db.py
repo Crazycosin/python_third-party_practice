@@ -68,5 +68,8 @@ def main():
     ioloop.IOLoop.instance().start()
 
 
+# todo 缺失index.html, recommended.html两个页面
+# 书籍中未提供，计划自己写一个简单的
+
 if __name__ == "__main__":
     main()

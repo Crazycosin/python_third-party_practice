@@ -5,3 +5,5 @@ pyvenv.cfg
 .vscode/
 .DS_Store
 __pycache__
+venv/
+.idea/
