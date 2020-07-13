@@ -1,5 +1,12 @@
 # - * - coding: utf-8 - * -
+import datetime
+import json
+
+from sqlalchemy import Column, Integer, String, create_engine, Float, Date
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 import pyexcel
+
 from textfile_solution import PROJECT_PATH
 
 def load_and_export_csv_test():
@@ -15,7 +22,7 @@ def load_and_export_csv_test():
 
 def read_data_test():
     # 读取的文件「example.xlsm」
-    spreadsheet = ppyexcele.get_sheet(file_name=PROJECT_PATH+"//file_location//tab_example.csv")
+    spreadsheet = pyexcel.get_sheet(file_name=PROJECT_PATH+"//file_location//tab_example.csv")
     # 遍历每一行 
     for r in spreadsheet.row_range():
         # 遍历每一列 
@@ -48,10 +55,10 @@ def export_sheets_test():
           "Sheet 2": [['X', 'Y', 'Z'], [1, 2, 3], [4, 5, 6]],
           "Sheet 3": [['O', 'P', 'Q'], [3, 2, 1], [4, 3, 2]]
     }
-    ppyexcele.save_book_as(bookdict=data, dest_file_name=PROJECT_PATH+"//file_location//multiple-sheets1.xls")
+    pyexcel.save_book_as(bookdict=data, dest_file_name=PROJECT_PATH+"//file_location//multiple-sheets1.xls")
 
 def read_multiple_data_test():
-    sheet = pe.get_sheet(file_name=PROJECT_PATH+"//file_location//multiple-sheets1.xls", 
+    sheet = pyexcel.get_sheet(file_name=PROJECT_PATH+"//file_location//multiple-sheets1.xls",
                         name_columns_by_row=0)
     print(json.dumps(sheet.to_dict()))
     #获取列标题 
@@ -94,15 +101,16 @@ def export_data_to_db():
     engine = create_engine('sqlite:///birth.db')
     Base = declarative_base()
     Session = sessionmaker(bind=engine)
+    filename = PROJECT_PATH + "./file_location/birth.xls"
 
-    class BirthRegister（Base）:
+    class BirthRegister(Base):
         __tablename__ = 'birth'
         id = Column(Integer, primary_key=True)
         name = Column(String)
         weight = Column(Float)
         birth = Column(Date)
 
-    Base.metadata.create_all（engine）
+    Base.metadata.create_all(engine)
 
     # 创建数据 
     data = [
@@ -111,11 +119,11 @@ def export_data_to_db():
         ['Smith', 4.2, datetime.date(2014, 11, 12)]
     ]
     pyexcel.save_as(array=data,
-                dest_file_name='birth.xls')
+                dest_file_name=filename)
 
     # 导入 Excel 文件中 
     session = Session()  # obtain a sql session
-    pyexcel.save_as(file_name='birth.xls',
+    pyexcel.save_as(file_name=filename,
                     name_columns_by_row=0,
                     dest_session=session,
                     dest_table=BirthRegister)
@@ -129,3 +137,8 @@ def export_data_to_db():
 if __name__ == "__main__":
     load_and_export_csv_test()
     read_data_test()
+    read_data_test1()
+    read_data_test2()
+    export_sheets_test()
+    read_multiple_data_test()
+    export_data_to_db()
