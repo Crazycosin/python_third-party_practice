@@ -11,3 +11,7 @@ ps 2.1 tinydb 中proces_elements方法新的版本没了。
 ps 2.2 postgresql 平常没用，第一次安装还出错了，导致密码忘了，看了下书里讲的内容跟前面mysql大同小异，不记录了
 
 ps 2.2 sqlserver 内容跟前面mysql大同小异，不记录了
+
+ps 8.2 hmap库google了也没找到
+
+ps 8.2 pybarcode库google之后，主页都404了
