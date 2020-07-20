@@ -1,3 +1,11 @@
+'''
+@Descripttion: 
+@version: 
+@Author: crazycosin
+@Date: 2020-07-18 20:50:29
+@LastEditors: crazycosin
+@LastEditTime: 2020-07-20 21:56:19
+'''
 from PIL import Image, ImageDraw
 import photomancy
 import random

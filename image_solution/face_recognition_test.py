@@ -81,6 +81,64 @@ def check_face_location():
     cv2.destroyAllWindows()
 
 
+def face_recognition_test_1():
+    # 识别图片中的所有人脸并显示出来 
+    # filename : shibie02.py
+    # 导入 pil 模块 
+    # 导入 face_recogntion 模块，可用命令安装 pip install face_recognition
+
+    # 将 jpg 文件加载到 numpy 数组中
+    filename = PROJECT_PATH + '/res/unknown.jpg'
+    image = face_recognition.load_image_file(filename)
+
+    # 使用默认的 HOG 模型查找图像中所有人脸 
+    # 这个方法已经相当准确了，但还是不如 CNN 模型那么准确，因为没有使用 GPU 加速 
+    # 另见 find_faces_in_picture_cnn.py
+    face_locations = face_recognition.face_locations(image)
+
+    # 使用 CNN 模型 
+    # face_locations = face_recognition.face_locations（image， number_of_times_to_upsample=0，
+        # model=「cnn」）
+
+    # 显示从图片中找到了多少张人脸 
+    print('I found {} face（s）in this photograph.'.format(len(face_locations)))
+
+    # 循环找到的所有人脸 
+    for face_location in face_locations:
+          # 显示每张脸的位置信息 
+        top, right, bottom, left = face_location
+        print('Top: {}, Left: {}, Bottom: {}, Right: {}'.format(top, left, bottom, right))
+        # 指定人脸的位置信息，然后显示人脸图片 
+        face_image = image[top:bottom, left:right]
+        pil_image = Image.fromarray(face_image)
+        pil_image.show()
+
+
+def face_recognition_test_2():
+    # 识别图片中的人脸 
+    wi_filename = PROJECT_PATH + '/res/willian.jpg'
+    ma_filename = PROJECT_PATH + '/res/maria.jpg'
+    unknown_filename = PROJECT_PATH + '/res/unknown.jpg'
+    jobs_image = face_recognition.load_image_file(wi_filename)
+    obama_image = face_recognition.load_image_file(ma_filename)
+    unknown_image = face_recognition.load_image_file(unknown_filename)
+
+    laoguan_encoding = face_recognition.face_encodings(jobs_image)[0]
+    maomao_encoding = face_recognition.face_encodings(obama_image)[0]
+    unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+
+    results = face_recognition.compare_faces([laoguan_encoding, maomao_encoding], unknown_encoding)
+    labels = ['willian', 'maria']
+
+    print('结果:' + str(results))
+
+    for i in range(0, len(results)):
+        if results[i] == True:
+                print('这个人是:' + labels[i])
+
+
 if __name__ == "__main__":
     # face_recognition_test()
-    check_face_location()
+    # check_face_location()
+    # face_recognition_test_1()
+    face_recognition_test_2()
