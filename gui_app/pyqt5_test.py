@@ -4,10 +4,10 @@
 @Author: crazycosin
 @Date: 2020-07-22 20:24:29
 @LastEditors: crazycosin
-@LastEditTime: 2020-07-22 21:27:16
+@LastEditTime: 2020-07-23 22:54:53
 '''
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5.QtGui import QIcon
 
 
@@ -73,7 +73,25 @@ def pyqt5_test_2():
     sys.exit(app.exec_())
 
 
+def pyqt5_test_3():
+    class Example(QMainWindow):
+        def __init__(self):
+            super().__init__()
+            self.initUI()
+
+        def initUI(self):
+            # 调用了 QtGui.QMainWindow 类的 statusBar()方法
+            self.statusBar().showMessage('这是状态信息') 
+            self.setGeometry(300, 300, 250, 150)
+            self.setWindowTitle('状态栏演示')
+            self.show()
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+
+
 if __name__ == '__main__':
     # pyqt5_test()
     # pyqt5_test_1()
-    pyqt5_test_2()
+    # pyqt5_test_2()
+    pyqt5_test_3()
