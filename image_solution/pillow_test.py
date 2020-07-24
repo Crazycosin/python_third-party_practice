@@ -188,13 +188,13 @@ def filter_image_test():
 
 
 if __name__ == "__main__":
-    # openimage_test()
-    # blend_imgage_test()
-    # composite_image_test()
-    # eval_image_test()
-    # thumbnail_image_test()
-    # copy_paste_image_test()
-    # convert_image_test()
-    # rotate_image_test()
-    # merge_filter_image_test()
+    openimage_test()
+    blend_imgage_test()
+    composite_image_test()
+    eval_image_test()
+    thumbnail_image_test()
+    copy_paste_image_test()
+    convert_image_test()
+    rotate_image_test()
+    merge_filter_image_test()
     filter_image_test()

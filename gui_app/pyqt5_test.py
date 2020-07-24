@@ -4,7 +4,7 @@
 @Author: crazycosin
 @Date: 2020-07-22 20:24:29
 @LastEditors: crazycosin
-@LastEditTime: 2020-07-23 22:54:53
+@LastEditTime: 2020-07-24 23:31:48
 '''
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
@@ -91,7 +91,7 @@ def pyqt5_test_3():
 
 
 if __name__ == '__main__':
-    # pyqt5_test()
-    # pyqt5_test_1()
-    # pyqt5_test_2()
+    pyqt5_test()
+    pyqt5_test_1()
+    pyqt5_test_2()
     pyqt5_test_3()
