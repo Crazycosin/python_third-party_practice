@@ -4,12 +4,14 @@
 @Author: crazycosin
 @Date: 2020-07-22 20:24:29
 @LastEditors: crazycosin
-@LastEditTime: 2020-07-24 23:31:48
+@LastEditTime: 2020-07-25 18:35:02
 '''
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
+from PyQt5.QtWidgets import (
+    QAction, QApplication, QWidget, 
+    QMainWindow, qApp)
 from PyQt5.QtGui import QIcon
-
+from __init__ import PROJECT_PATH
 
 def pyqt5_test():
     app = QApplication(sys.argv)
@@ -90,8 +92,58 @@ def pyqt5_test_3():
     sys.exit(app.exec_())
 
 
+def pyqt5_test_4():
+    icon = PROJECT_PATH + '/res/bitbug_favicon.ico'
+    class Example(QMainWindow):
+        def __init__(self):
+            super().__init__()
+            self.initUI()
+
+        def initUI(self):
+            exitAction = QAction(QIcon(icon), '&退出', self)
+            exitAction.setShortcut('Ctrl+Q')
+            exitAction.setStatusTip('退出程序')
+            exitAction.triggered.connect(qApp.quit)
+            self.statusBar()
+            menubar = self.menuBar()
+            fileMenu = menubar.addMenu('&文件')
+            fileMenu.addAction(exitAction)
+
+            self.setGeometry(300, 300, 300, 200)
+            self.setWindowTitle('菜单栏练习')
+            self.show()
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+
+
+def pyqt5_test_5():
+    icon = PROJECT_PATH + '/res/bitbug_favicon.ico'
+    class Example(QMainWindow):
+
+        def __init__(self):
+            super().__init__()
+            self.initUI()
+
+        def initUI(self):
+            exitAction = QAction(QIcon(icon), '退出', self)
+            exitAction.setShortcut('Ctrl+Q')
+            exitAction.triggered.connect(qApp.quit)
+            self.toolbar = self.addToolBar('退出')
+            self.toolbar.addAction(exitAction)
+            self.setGeometry(300, 300, 300, 200)
+            self.setWindowTitle('工具栏练习')
+            self.show()
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+
 if __name__ == '__main__':
-    pyqt5_test()
-    pyqt5_test_1()
-    pyqt5_test_2()
-    pyqt5_test_3()
+    # pyqt5_test()
+    # pyqt5_test_1()
+    # pyqt5_test_2()
+    # pyqt5_test_3()
+    # pyqt5_test_4()
+    pyqt5_test_5()
