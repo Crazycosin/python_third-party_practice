@@ -28,7 +28,7 @@ PyMySQL==0.9.3
 PyPDF2==1.26.0
 python-docx==0.8.10
 pytz==2020.1
-PyYAML==5.3.1
+PyYAML==5.4
 redis==3.5.3
 reportlab==3.5.44
 six==1.15.0
