@@ -25,7 +25,7 @@ pyexcel-io==0.5.20
 pyexcel-xls==0.5.8
 pymongo==3.10.1
 PyMySQL==0.9.3
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 python-docx==0.8.10
 pytz==2020.1
 PyYAML==5.3.1
